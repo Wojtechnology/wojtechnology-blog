@@ -1,5 +1,6 @@
 html {
   font-family: Spectral, sans-serif;
+  color: #000;
 }
 
 a, a:link, a:visited {
@@ -14,8 +15,8 @@ a:hover {
 }
 
 h1 {
-  font-family: Spectral;
   font-size: 120px;
+  font-weight: 600;
 }
 
 #category {
@@ -43,7 +44,7 @@ h1 {
 
 .uk-navbar-container {
   background: #fff !important;
-  font-family: Spectral;
+  border-bottom: thin solid #000;
 }
 
 img:hover {
@@ -54,6 +55,7 @@ img:hover {
 /* Specific Styles */
 
 .logo-text {
+  font-size: 1.5rem;
   font-family: Spectral;
   font-weight: 800;
   font-style: italic;
