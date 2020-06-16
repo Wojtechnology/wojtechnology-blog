@@ -20,6 +20,12 @@ const Nav = () => {
                   </ul>
                 </div>
 
+                <div className="uk-navbar-center">
+                  <h3 className="logo-text">
+                    <Link to="/">wojtechnology</Link>
+                  </h3>
+                </div>
+
                 <div className="uk-navbar-right">
                   <ul className="uk-navbar-nav">
                     {categories.map((category, i) => {
