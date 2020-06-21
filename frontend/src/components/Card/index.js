@@ -17,7 +17,23 @@ function truncatedContent(article, numNodes) {
   return article.content.slice(0, nthNode.position.end.offset);
 }
 
+const ReadFull = ({ article }) => {
+  return (
+    <Link
+      to={`/article/${article.id}`}
+      className="card-read-full card-read-full-link uk-width-1-1"
+    >
+      <div className="card-read-full-gradient"></div>
+      <div className="card-read-full-bottom">
+        <h4 className="card-read-full-text">Read full article</h4>
+      </div>
+    </Link>
+  );
+}
+
 const Card = ({ article, maxNodes }) => {
+  const trunc = !!maxNodes;
+  const content = trunc ? truncatedContent(article, maxNodes) : article.content;
   return (
     <div className="uk-card uk-width-1-1">
       <Link to={`/article/${article.id}`}>
@@ -31,16 +47,8 @@ const Card = ({ article, maxNodes }) => {
       <Link to={`/category/${article.category.id}`} className="category-tag">
         <p className="category-tag-text">{article.category.name}</p>
       </Link>
-      <ReactMarkdown source={truncatedContent(article, maxNodes)} />
-      <Link
-        to={`/article/${article.id}`}
-        className="card-read-full card-read-full-link uk-width-1-1"
-      >
-        <div className="card-read-full-gradient"></div>
-        <div className="card-read-full-bottom">
-          <h4 className="card-read-full-text">Read full article</h4>
-        </div>
-      </Link>
+      <ReactMarkdown source={content} />
+      { trunc ? <ReadFull article={article} /> : null }
     </div>
   );
 };
