@@ -1,26 +1,28 @@
 import React from "react";
 import Card from "../Card";
 
+const TOP_MAX_NODES = 5;
+const REST_MAX_NODES = 3;
+
 const Articles = ({ articles }) => {
-  const leftArticlesCount = Math.ceil(articles.length / 5);
-  const leftArticles = articles.slice(0, leftArticlesCount);
-  const rightArticles = articles.slice(leftArticlesCount, articles.length);
+  const firstArticle = articles[0];
+  const restArticles = articles.slice(1, articles.length);
 
   return (
-    <div>
-      <div className="uk-child-width-1-2" data-uk-grid>
-        <div>
-          {leftArticles.map((article, i) => {
-            return <Card article={article} key={`article__${article.id}`} />;
-          })}
-        </div>
-        <div>
-          <div className="uk-child-width-1-2@m uk-grid-match" data-uk-grid>
-            {rightArticles.map((article, i) => {
-              return <Card article={article} key={`article__${article.id}`} />;
-            })}
-          </div>
-        </div>
+    <div data-uk-grid>
+      <Card
+        article={firstArticle}
+        maxNodes={TOP_MAX_NODES}
+        key={`article__${firstArticle.id}`}
+      />
+      <div>
+        {restArticles.map((article, i) => {
+          return <Card
+            article={article}
+            maxNodes={REST_MAX_NODES}
+            key={`article__${article.id}`}
+          />;
+        })}
       </div>
     </div>
   );

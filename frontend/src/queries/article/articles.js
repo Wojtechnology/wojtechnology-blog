@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 const ARTICLES_QUERY = gql`
   query Articles {
-    articles {
+    articles(sort: "published_at:desc") {
       id
       title
       category {
@@ -12,6 +12,8 @@ const ARTICLES_QUERY = gql`
       image {
         url
       }
+      published_at
+      content
     }
   }
 `;

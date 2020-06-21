@@ -7,8 +7,7 @@ const Home = () => {
   return (
     <div>
       <div className="uk-section">
-        <div className="uk-container uk-container-large">
-          <h1>The Blog</h1>
+        <div className="uk-container uk-container-small">
           <Query query={ARTICLES_QUERY}>
             {({ data: { articles } }) => {
               return <Articles articles={articles} />;
