@@ -11,6 +11,7 @@ a:hover {
   color: inherit;
   text-decoration: underline;
   text-decoration-color: #ffbb33;
+  -webkit-text-decoration-color: #ffbb33;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -59,6 +60,7 @@ img:hover {
   font-style: italic;
   text-decoration: underline;
   text-decoration-color: #ffbb33;
+  -webkit-text-decoration-color: #ffbb33;
 }
 
 .card-title {
@@ -83,7 +85,11 @@ img:hover {
 
 .card-read-full-gradient {
   height: 80px;
-  background: linear-gradient(rgba(0,0,0,0),rgba(255, 255, 255, 1.0));
+  background: linear-gradient(transparent 0%, rgba(255, 255, 255, 0.01) 1%, rgba(255, 255, 255, 1) 100%);
+  background: -o-linear-gradient(transparent 0%, rgba(255, 255, 255, 0.01) 1%, rgba(255, 255, 255, 1) 100%);
+  background: -moz-linear-gradient(transparent 0%, rgba(255, 255, 255, 0.01) 1%, rgba(255, 255, 255, 1) 100%);
+  background: -webkit-linear-gradient(transparent 0%, rgba(255, 255, 255, 0.01) 1%, rgba(255, 255, 255, 1) 100%);
+  background: -ms-linear-gradient(transparent 0%, rgba(255, 255, 255, 0.01) 1%, rgba(255, 255, 255, 1) 100%);
 }
 
 .card-read-full-bottom {
