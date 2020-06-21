@@ -5,10 +5,11 @@ const CATEGORY_ARTICLES_QUERY = gql`
     category(id: $id) {
       id
       name
-      articles {
+      articles (sort: "published_at:desc") {
         id
         title
         content
+        published_at
         image {
           url
         }

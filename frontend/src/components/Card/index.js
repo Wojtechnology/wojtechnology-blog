@@ -1,27 +1,47 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
+import markdown from "remark-parse";
+import unified from "unified";
 import { Link } from "react-router-dom";
 
-const Card = ({ article }) => {
-  const imageUrl =
-    process.env.NODE_ENV !== "development"
-      ? article.image.url
-      : process.env.REACT_APP_BACKEND_URL + article.image.url;
+function getFormattedPublishedAt(article) {
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const publishedAt = new Date(article.published_at);
+  return publishedAt.toLocaleDateString("en-US", options);
+}
+
+function truncatedContent(article, numNodes) {
+  const processor = unified().use(markdown);
+  const tree = processor.parse(article.content);
+  const nthNode = tree.children[Math.min(numNodes, tree.children.length) - 1];
+  return article.content.slice(0, nthNode.position.end.offset);
+}
+
+const Card = ({ article, maxNodes }) => {
   return (
-    <Link to={`/article/${article.id}`} className="uk-link-reset">
-      <div className="uk-card uk-card-muted">
-        <div className="uk-card-media-top">
-          <img src={imageUrl} alt={article.image.url} height="100" />
+    <div className="uk-card uk-width-1-1">
+      <Link to={`/article/${article.id}`}>
+        <h4 className="uk-card-title card-title">
+          {article.title}
+        </h4>
+      </Link>
+      <p className="card-published-at">
+        {getFormattedPublishedAt(article)}
+      </p>
+      <Link to={`/category/${article.category.id}`} className="category-tag">
+        <p className="category-tag-text">{article.category.name}</p>
+      </Link>
+      <ReactMarkdown source={truncatedContent(article, maxNodes)} />
+      <Link
+        to={`/article/${article.id}`}
+        className="card-read-full card-read-full-link uk-width-1-1"
+      >
+        <div className="card-read-full-gradient"></div>
+        <div className="card-read-full-bottom">
+          <h4 className="card-read-full-text">Read full article</h4>
         </div>
-        <div className="uk-card-body">
-          <p id="category" className="uk-text-uppercase">
-            {article.category.name}
-          </p>
-          <p id="title" className="uk-text-large">
-            {article.title}
-          </p>
-        </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

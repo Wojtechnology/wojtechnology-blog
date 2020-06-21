@@ -13,8 +13,8 @@ const Category = () => {
         return (
           <div>
             <div className="uk-section">
-              <div className="uk-container uk-container-large">
-                <h1>{category.name}</h1>
+              <div className="uk-container uk-container-small">
+                <h2>{category.name}</h2>
                 <Articles articles={category.articles} />
               </div>
             </div>
